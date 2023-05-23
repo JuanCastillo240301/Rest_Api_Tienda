@@ -16,11 +16,11 @@ export const usuario = sequelize.define(
     },
     nombre_usu: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     apellidos_usu: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       password: {
         type: DataTypes.STRING,
@@ -36,19 +36,19 @@ export const usuario = sequelize.define(
       },
       ciudad: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       estado: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       direccion: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       codigo_postal: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
   },
   {
