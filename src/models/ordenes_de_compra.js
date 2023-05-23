@@ -1,9 +1,10 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import { producto } from "./producto.js";
 import { ticket } from "./ticket.js";
 
-export const producto = sequelize.define(
-  "productos",
+export const orden_de_compra = sequelize.define(
+  "ordenes_de_compra",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,19 +13,23 @@ export const producto = sequelize.define(
       allowNull: false,
       unique: true
     },
-    nombre_p: {
-      type: DataTypes.STRING,
+    fecha: {
+      type: DataTypes.DATE,
       allowNull: false
     },
-    descripcion: {
+    total: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      },
+      a_domicilio: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      precio: {
+      direccion: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      imagen: {
+      clave_compra: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -34,11 +39,11 @@ export const producto = sequelize.define(
   }
 );
 
-producto.hasMany(ticket, {
-  foreignKey: "id_producto",
+orden_de_compra.hasMany(ticket, {
+  foreignKey: "id_compra",
    sourceKey: "id",
    });
-   ticket.belongsTo(producto, { 
-   foreignKey: "id_producto", 
+   ticket.belongsTo(orden_de_compra, { 
+   foreignKey: "id_compra", 
    targetId: "id" 
    });

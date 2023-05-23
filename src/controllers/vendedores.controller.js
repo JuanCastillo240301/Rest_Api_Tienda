@@ -1,5 +1,5 @@
 import {vendedor} from '../models/vendedor.js';
-
+import { producto } from '../models/producto.js';
 export const getvendedores = async(req,res) => {
 try {
     //throw new Error('query fail')
@@ -81,3 +81,16 @@ export const deletevendedores = async(req,res) => {
         }
         };
 
+
+        export const getVendedoresProducto = async(req,res) => {
+            try {
+                const {id} = req.params;
+               const Producto = await producto.findAll({
+                    attributes: ["id", "nombre_p", "descripcion", "precio", "imagen","id_categoria","id_vendedor"],
+                    where: { id_vendedor: id },
+                  });
+                  res.json(Producto);
+            } catch (error) {
+                return res.status(500).json({message: error.message}); 
+            }
+            };

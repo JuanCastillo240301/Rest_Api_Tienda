@@ -6,6 +6,9 @@ import cupones_usuariosRoutes from './routes/cupones_usuarios.routes.js';
 import vendedoresRoutes from './routes/vendedores.routes.js';
 import categoriasRoutes from './routes/categorias_p.routes.js';
 import productosRoutes from './routes/productos.routes.js';
+import metodopagoRoutes from './routes/metodos_pago.routes.js';
+import ordendecompraRoutes from './routes/ordenes_de_compra.routes.js';
+import ticketsRoutes from './routes/ticket.routes.js';
 const app = express();
 
 
@@ -19,5 +22,7 @@ app.use(cupones_usuariosRoutes);
 app.use(vendedoresRoutes);
 app.use(categoriasRoutes);
 app.use(productosRoutes);
-
+app.use(metodopagoRoutes);
+app.use(ordendecompraRoutes);
+app.use(ticketsRoutes);
 export default app;
