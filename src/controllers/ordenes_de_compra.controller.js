@@ -3,7 +3,15 @@ import { producto } from '../models/producto.js';
 export const getordenes_de_compra = async(req,res) => {
 try {
     //throw new Error('query fail')
-    const Orden_de_compra = await orden_de_compra.findAll() 
+    const Orden_de_compra = await orden_de_compra.findAll({
+        include: [
+          {
+            model: producto,
+            attributes: ['id'],
+          },
+        ],
+        raw: true,
+      }); 
     res.json(Orden_de_compra)
 } catch (error) {
     return res.status(500).json({message: error.message}); 
@@ -72,9 +80,17 @@ export const deleteordenes_de_compra = async(req,res) => {
             //throw new Error('query fail')
             const {id} = req.params;
             const User = await orden_de_compra.findOne({
+                include: [
+                    {
+                      model: producto,
+                      attributes: ['id'],
+                    },
+                  ],
+                  raw: true,
                 where:{
                     id
                 }
+                
             })
             if (!User) {
                 return res.status(404).json({message: "Vendedor no existe"});      

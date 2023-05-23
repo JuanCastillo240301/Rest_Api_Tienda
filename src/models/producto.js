@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
 import { ticket } from "./ticket.js";
+import { orden_de_compra } from "./ordenes_de_compra.js";
+
 
 export const producto = sequelize.define(
   "productos",
@@ -42,3 +44,12 @@ producto.hasMany(ticket, {
    foreignKey: "id_producto", 
    targetId: "id" 
    });
+
+   producto.hasMany(orden_de_compra, {
+    foreignKey: "id_producto",
+     sourceKey: "id",
+     });
+     orden_de_compra.belongsTo(producto, { 
+     foreignKey: "id_producto", 
+     targetId: "id" 
+     });
