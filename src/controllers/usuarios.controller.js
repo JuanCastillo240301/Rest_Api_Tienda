@@ -11,7 +11,8 @@ try {
 };
 
 export const createUsuario = async(req,res) => {
-    const {nombre_usu,apellidos_usu,password,email,telefono,ciudad,estado,direccion,codigo_postal,id_rol} = req.body
+    const {nombre_usu,apellidos_usu,password,email,telefono,ciudad,estado,direccion,codigo_postal} = req.body
+    const id_rol=2
 try {
     
     const newusuario = await usuario.create({
@@ -90,3 +91,16 @@ export const deleteUsuarios = async(req,res) => {
         }
         };
 
+export const login = async(req,res) => {
+    const {email,password} = req.body
+try {
+    
+    const newusuario = await usuario.findOne({
+        email:email 
+    })
+
+    res.json(newusuario)
+} catch (error) {
+    return res.status(500).json({message: error.message}); 
+}
+};
