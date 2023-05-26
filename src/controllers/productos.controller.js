@@ -1,4 +1,6 @@
 import {producto} from '../models/producto.js';
+import {vendedor} from '../models/vendedor.js' 
+import {usuario} from '../models/usuario.js'
 import {categoria_p} from '../models/categoria_p.js';
 
 export const getProductos = async(req,res) => {
@@ -83,17 +85,33 @@ export const deleteProductos = async(req,res) => {
                       model: categoria_p,
                       attributes: ['id', 'categoria'],
                     },
+                    {
+                      model: vendedor,
+                      attributes:['id','id']
+                    }
                   ],
                   raw: true,
                 where:{
                     id
+                }    
+            })
+            const sellerId=User['vendedore.id'];
+            const Seller= await vendedor.findOne({
+                include: [
+                    {
+                      model: usuario,
+                      attributes: ['id', 'nombre_usu'],
+                    },
+                ],
+                  raw: true,
+                where:{
+                    id:sellerId 
                 }
-                
             })
             if (!User) {
                 return res.status(404).json({message: "producto no existe"});      
             }
-            res.json(User);
+            res.json({'data':{User,Seller}});
 
 
         } catch (error) {
