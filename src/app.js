@@ -10,7 +10,12 @@ import metodopagoRoutes from './routes/metodos_pago.routes.js';
 import ordendecompraRoutes from './routes/ordenes_de_compra.routes.js';
 import ticketsRoutes from './routes/ticket.routes.js';
 const app = express();
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //middlewares
 app.use(express.json());
