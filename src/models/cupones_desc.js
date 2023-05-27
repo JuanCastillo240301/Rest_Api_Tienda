@@ -26,6 +26,10 @@ export const cupon_desc = sequelize.define('cupones_desc',{
         unique: false,
         defaultValue: true
     },
+    codigo:{
+        type:DataTypes.STRING,
+        unique:true
+    }
     
 },{
     timestamps: false

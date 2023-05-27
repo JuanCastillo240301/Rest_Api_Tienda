@@ -62,10 +62,10 @@ export const deletecupon_desc = async(req,res) => {
     export const getcupon_desc = async(req,res) => {
         try {
             //throw new Error('query fail')
-            const {id} = req.params;
+            const {codigo} = req.body;
             const Cupon_desc = await cupon_desc.findOne({
                 where:{
-                    id
+                    codigo
                 }
             })
             if (!Cupon_desc) {
