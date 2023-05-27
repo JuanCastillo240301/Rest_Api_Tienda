@@ -12,13 +12,14 @@ try {
 };
 
 export const createcupon_desc = async(req,res) => {
-    const {descuento,dias_validez,activo} = req.body
+    const {descuento,dias_validez,activo,codigo} = req.body
 try {
     
     const newcupon_desc = await cupon_desc.create({
         descuento,
         dias_validez,
-        activo
+        activo,
+        codigo
     })
 
     res.json(newcupon_desc)
@@ -31,12 +32,13 @@ export const updatecupon_desc = async(req,res) => {
     try {
         //throw new Error('query fail')
         const {id} = req.params;
-        const {descuento,dias_validez,activo} = req.body
+        const {descuento,dias_validez,activo,codigo} = req.body
         
         const Cupon_desc = await cupon_desc.findByPk(id)
         Cupon_desc.descuento = descuento
         Cupon_desc.dias_validez = dias_validez
         Cupon_desc.activo = activo
+        Cupon_desc.codigo = codigo
         await Cupon_desc.save();
         res.json(Cupon_desc);
     } catch (error) {
