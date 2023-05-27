@@ -94,12 +94,16 @@ export const deleteUsuarios = async(req,res) => {
 export const login = async(req,res) => {
     const {email,password} = req.body
 try {
-    
+   console.log(email) 
     const newusuario = await usuario.findOne({
-        email:email 
+        where:{
+        email
+        }
     })
+    if(newusuario.email==email&&newusuario.password==password){
+        res.json(newusuario)
+    }
 
-    res.json(newusuario)
 } catch (error) {
     return res.status(500).json({message: error.message}); 
 }

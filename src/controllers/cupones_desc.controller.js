@@ -28,6 +28,18 @@ try {
 }
 };
 
+export const disableCupon = async(req,res) => {
+    try {
+        //throw new Error('query fail')
+        const {id} = req.params;
+        const Cupon_desc = await cupon_desc.findByPk(id)
+        Cupon_desc.activo = false 
+        await Cupon_desc.save();
+        res.json(Cupon_desc);
+    } catch (error) {
+        return res.status(500).json({message: error.message}); 
+    }
+    };
 export const updatecupon_desc = async(req,res) => {
     try {
         //throw new Error('query fail')
